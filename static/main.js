@@ -3954,7 +3954,175 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar App = function App() {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, \"Hej\");\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (App);\n\n//# sourceURL=webpack:///./src/components/App.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _GameTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GameTable */ \"./src/components/GameTable/index.js\");\n\n\n\nvar App = function App() {\n  var game = {\n    names: [\"Gösta\", \"Helge\", \"Folke\", \"Cecilia\"],\n    points: [[2, 4, 6, 8], [8, 6, 4, 2]],\n    mahjongs: [0, 2],\n    settings: {\n      noPlayers: 4,\n      pointsDistribution: 2,\n      startPoints: 2000\n    }\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GameTable__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    game: game\n  });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (App);\n\n//# sourceURL=webpack:///./src/components/App.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/GameTable.js":
+/*!***********************************************!*\
+  !*** ./src/components/GameTable/GameTable.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _Names__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Names */ \"./src/components/GameTable/Names/index.js\");\n/* harmony import */ var _PointsInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PointsInput */ \"./src/components/GameTable/PointsInput/index.js\");\n/* harmony import */ var _PointsTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PointsTable */ \"./src/components/GameTable/PointsTable/index.js\");\n\n\n\n\n\nvar GameTable = function GameTable(_ref) {\n  var game = _ref.game;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"game-table\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Names__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    names: game.names\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PointsInput__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n    settings: game.settings\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PointsTable__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n    points: game.points,\n    mahjongs: game.mahjongs,\n    settings: game.settings\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GameTable);\n\n//# sourceURL=webpack:///./src/components/GameTable/GameTable.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/Names/Names.js":
+/*!*************************************************!*\
+  !*** ./src/components/GameTable/Names/Names.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar Names = function Names(_ref) {\n  var names = _ref.names;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"names\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, names && names.map(function (name, i) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      key: i\n    }, name);\n  })));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Names);\n\n//# sourceURL=webpack:///./src/components/GameTable/Names/Names.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/Names/index.js":
+/*!*************************************************!*\
+  !*** ./src/components/GameTable/Names/index.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Names__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Names */ \"./src/components/GameTable/Names/Names.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _Names__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/Names/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsInput/PointsInput.js":
+/*!*************************************************************!*\
+  !*** ./src/components/GameTable/PointsInput/PointsInput.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _iterableToArray(iter) { if (typeof Symbol !== \"undefined\" && Symbol.iterator in Object(iter)) return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n\n\nvar PointsInput = function PointsInput(_ref) {\n  var settings = _ref.settings;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"points-input\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", null, settings && _toConsumableArray(Array(settings.noPlayers)).map(function (_, i) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      key: i,\n      className: \"input-cell\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      className: \"token\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"radio\",\n      name: \"mahjong\",\n      id: \"mahjong_\" + i,\n      value: \"0\"\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"label\", {\n      htmlFor: \"mahjong_\" + i\n    }, \"M\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"input\", {\n      type: \"number\",\n      step: \"1\",\n      maxLength: \"3\",\n      size: \"3\"\n    }));\n  })));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (PointsInput);\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsInput/PointsInput.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsInput/index.js":
+/*!*******************************************************!*\
+  !*** ./src/components/GameTable/PointsInput/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _PointsInput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PointsInput */ \"./src/components/GameTable/PointsInput/PointsInput.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _PointsInput__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsInput/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/PointsRow/PointsRow.js":
+/*!*********************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/PointsRow/PointsRow.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar PointsRow = function PointsRow(_ref) {\n  var points = _ref.points,\n      wind = _ref.wind;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"points-row\"\n  }, points && points.map(function (point, i) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      key: i\n    }, wind == i && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      className: \"Token\"\n    }, \"\\xD6\"), point);\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (PointsRow);\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/PointsRow/PointsRow.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/PointsRow/index.js":
+/*!*****************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/PointsRow/index.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _PointsRow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PointsRow */ \"./src/components/GameTable/PointsTable/PointsRow/PointsRow.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _PointsRow__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/PointsRow/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/PointsTable.js":
+/*!*************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/PointsTable.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _PointsRow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PointsRow */ \"./src/components/GameTable/PointsTable/PointsRow/index.js\");\n/* harmony import */ var _RoundRow__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RoundRow */ \"./src/components/GameTable/PointsTable/RoundRow/index.js\");\n/* harmony import */ var _TransactionRow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TransactionRow */ \"./src/components/GameTable/PointsTable/TransactionRow/index.js\");\n\n\n\n\n\nvar PointsTable = function PointsTable(_ref) {\n  var points = _ref.points,\n      mahjongs = _ref.mahjongs,\n      settings = _ref.settings;\n\n  var calculateTransactions = function calculateTransactions(i) {\n    return points[i];\n  };\n\n  var pointsSum = Array(settings.noPlayers).fill(settings.startPoints);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"points-table\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PointsRow__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n    key: \"points-init\",\n    points: pointsSum,\n    wind: 0\n  }), points && points.map(function (round, i) {\n    var transaction = calculateTransactions(i);\n    pointsSum = pointsSum.map(function (p, i) {\n      return p + transaction[i];\n    });\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RoundRow__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n      key: \"round-\" + i,\n      points: round,\n      mahjong: mahjongs[i]\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TransactionRow__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n      key: \"transaction-\" + i,\n      points: transaction\n    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PointsRow__WEBPACK_IMPORTED_MODULE_1__[\"default\"], {\n      key: \"points-\" + i,\n      points: pointsSum,\n      wind: i\n    }));\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (PointsTable);\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/PointsTable.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/RoundRow/RoundRow.js":
+/*!*******************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/RoundRow/RoundRow.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar RoundRow = function RoundRow(_ref) {\n  var points = _ref.points,\n      mahjong = _ref.mahjong;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"round-row\"\n  }, points && points.map(function (point, i) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      key: i\n    }, mahjong == i && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"span\", {\n      className: \"Token\"\n    }, \"M\"), point);\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (RoundRow);\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/RoundRow/RoundRow.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/RoundRow/index.js":
+/*!****************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/RoundRow/index.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _RoundRow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoundRow */ \"./src/components/GameTable/PointsTable/RoundRow/RoundRow.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _RoundRow__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/RoundRow/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/TransactionRow/TransactionRow.js":
+/*!*******************************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/TransactionRow/TransactionRow.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar TransactionRow = function TransactionRow(_ref) {\n  var points = _ref.points;\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n    className: \"transaction-row\"\n  }, points && points.map(function (point, i) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(\"div\", {\n      key: i\n    }, point);\n  }));\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (TransactionRow);\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/TransactionRow/TransactionRow.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/TransactionRow/index.js":
+/*!**********************************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/TransactionRow/index.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _TransactionRow__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactionRow */ \"./src/components/GameTable/PointsTable/TransactionRow/TransactionRow.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _TransactionRow__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/TransactionRow/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/PointsTable/index.js":
+/*!*******************************************************!*\
+  !*** ./src/components/GameTable/PointsTable/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _PointsTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PointsTable */ \"./src/components/GameTable/PointsTable/PointsTable.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _PointsTable__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/PointsTable/index.js?");
+
+/***/ }),
+
+/***/ "./src/components/GameTable/index.js":
+/*!*******************************************!*\
+  !*** ./src/components/GameTable/index.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _GameTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GameTable */ \"./src/components/GameTable/GameTable.js\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _GameTable__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack:///./src/components/GameTable/index.js?");
 
 /***/ }),
 
