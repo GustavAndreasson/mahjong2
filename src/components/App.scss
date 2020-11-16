@@ -1,0 +1,64 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #404040;
+    background-color: #fafafa;
+    text-align: center;
+    margin: 0px;
+}
+
+h1 {
+    font-weight: normal;
+    text-align: center;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+input[type=button], input[type=submit], button {
+    height: 34px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=radio], input[type=checkbox] {
+    position: fixed;
+    left: -9999px;
+}
+
+input[type=radio] + label, input[type=checkbox] + label {
+    display:inline-block;
+    padding: 0px 4px;
+    background-color: #e7e7e7;
+    color: #bbbbbb;
+    cursor: pointer;
+}
+
+input[type=radio]:checked + label, input[type=checkbox]:checked + label {
+    background-color:#d0d0d0;
+    color: #000000;
+}
+
+a {
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.container {
+    display: inline-block;
+    text-align: center;
+    max-width: 640px;
+    padding: 5px 5px 20px;
+    margin: 5px 5px 10px;
+    background-color: #ffffff;
+    border: 1px solid #666666;
+    box-shadow: 5px 5px 3px #666666;
+}

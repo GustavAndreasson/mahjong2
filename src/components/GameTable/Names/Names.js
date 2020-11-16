@@ -1,4 +1,5 @@
 import React from "react";
+import "./Names.scss";
 
 const Names = ({ names }) => (
     <div className="names">

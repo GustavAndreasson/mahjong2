@@ -1,0 +1,18 @@
+.points-table {
+    display: table-row-group;
+
+    div {
+        display: table-row;
+
+        div {
+            display: table-cell;
+            border-right: 1px dotted #666666;
+            font-family: "Trebuchet MS", Tahoma, Geneva, sans-serif;
+            text-align: right;
+            line-height: 21px;
+            padding-left: 15px;
+            padding-right: 15px;
+            white-space: nowrap;
+        }
+    }
+}

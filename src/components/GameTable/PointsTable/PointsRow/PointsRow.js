@@ -1,10 +1,11 @@
 import React from "react";
+import "./PointsRow.scss";
 
 const PointsRow = ({ points, wind }) => (
     <div className="points-row">
         { points &&  points.map((point, i) => (
             <div key={i}>
-                { wind == i && <span className="Token">Ö</span> }
+                { wind == i && <span className="token">Ö</span> }
                 { point }
             </div>
         ))}

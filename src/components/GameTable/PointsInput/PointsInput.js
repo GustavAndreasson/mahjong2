@@ -1,4 +1,5 @@
 import React from "react";
+import "./PointsInput.scss";
 
 const PointsInput = ({ settings }) => (
     <div className="points-input">

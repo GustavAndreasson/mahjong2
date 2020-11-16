@@ -1,0 +1,13 @@
+.game-table {
+    display: table;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-style: hidden;
+    margin-top: 5px;
+
+    .token {
+        float: left;
+        font-weight: bold;
+        font-size: 16px;
+    }
+}

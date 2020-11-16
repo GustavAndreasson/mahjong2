@@ -1,0 +1,24 @@
+.names {
+    display: table-header-group;
+
+    div {
+        display: table-row;
+
+        div {
+            display: table-cell;
+            border-right: 1px dotted #666666;
+            border-bottom: 1px solid #666666;
+            overflow: hidden;
+            cursor: pointer;
+            font-weight: normal;
+            width: 110px;
+            text-align: center;
+            font-family: "Trebuchet MS", Tahoma, Geneva, sans-serif;
+            font-size: 14px;
+            line-height: 21px;
+            padding-left: 15px;
+            padding-right: 15px;
+            white-space: nowrap;
+        }
+    }
+}

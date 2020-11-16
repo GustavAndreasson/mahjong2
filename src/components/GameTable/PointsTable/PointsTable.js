@@ -1,4 +1,5 @@
 import React from "react";
+import "./PointsTable.scss";
 import PointsRow from "./PointsRow";
 import RoundRow from "./RoundRow";
 import TransactionRow from "./TransactionRow";
@@ -16,7 +17,7 @@ const PointsTable = ({ points, mahjongs, settings }) => {
                 return (
                     <>
                         <RoundRow key={"round-" + i} points={round} mahjong={mahjongs[i]} />
-                        { (settings.pointsDistribution == 2 || settings.pointsDistribution == 3) &&
+                        { settings.pointsDistribution >= 2 &&
                             <TransactionRow key={"transaction-" + i} points={transaction} />
                         }
                         <PointsRow key={"points-" + i} points={pointsSum} wind={i} />

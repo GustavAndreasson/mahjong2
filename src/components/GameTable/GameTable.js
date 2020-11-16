@@ -1,4 +1,5 @@
 import React from "react";
+import "./GameTable.scss";
 import Names from "./Names";
 import PointsInput from "./PointsInput";
 import PointsTable from "./PointsTable";
