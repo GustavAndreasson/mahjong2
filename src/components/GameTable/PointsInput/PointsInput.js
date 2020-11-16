@@ -15,7 +15,7 @@ const PointsInput = ({ settings, update }) => {
                 || settings.pointsDistribution == 0
                 || i == mahjong
                 ? parseInt(v) : 0
-            ), mahjong);
+            ), parseInt(mahjong));
             setValues(Array(settings.noPlayers).fill(""));
             setMahjong(-1);
         }
