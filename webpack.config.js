@@ -24,11 +24,7 @@ module.exports = {
     resolve: {
         alias: {
             Components: path.resolve(__dirname, 'src/components'),
-            Actions: path.resolve(__dirname, 'src/actions'),
-            Reducers: path.resolve(__dirname, 'src/reducers'),
-            Selectors: path.resolve(__dirname, 'src/selectors'),
-            Api: path.resolve(__dirname, 'src/api'),
-            Utils: path.resolve(__dirname, 'src/utils')
+            Hooks: path.resolve(__dirname, 'src/hooks')
         },
         extensions: ['.js', '.jsx', '.scss', '.css']
     }

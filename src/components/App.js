@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./App.scss";
+import Header from "./Header";
 import GameTable from "./GameTable";
 import Buttons from "./Buttons";
+import useLocalStorage from "Hooks/useLocalStorage";
 
 const App = () => {
-    const [game, setGame] = useState({
+    const [game, setGame] = useLocalStorage("game", {
         names: ["Gösta", "Helge", "Folke", "Cecilia"],
         points: [[2, 4, 6, 8], [8, 6, 4, 2]],
         mahjongs: [0, 2],
@@ -31,8 +33,9 @@ const App = () => {
 
     return (
         <>
-            <GameTable game={game} update={update}/>
-            <Buttons undoRound={undoRound}/>
+            <Header />
+            <GameTable game={game} update={update} />
+            <Buttons undoRound={undoRound} />
         </>
     )
 }
