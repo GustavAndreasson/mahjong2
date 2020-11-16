@@ -1,4 +1,5 @@
 import React from "react";
+import "./TransactionRow.scss";
 
 const TransactionRow = ({ points }) => (
     <div className="transaction-row">

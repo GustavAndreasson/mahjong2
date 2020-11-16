@@ -1,4 +1,5 @@
 import React from "react";
+import "./RoundRow.scss";
 
 const RoundRow = ({ points, mahjong }) => (
     <div className="round-row">
