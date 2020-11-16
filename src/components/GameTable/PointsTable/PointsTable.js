@@ -1,12 +1,15 @@
-import React from "react";
+import React, {Fragment} from "react";
 import "./PointsTable.scss";
 import PointsRow from "./PointsRow";
 import RoundRow from "./RoundRow";
 import TransactionRow from "./TransactionRow";
 
+const winds = ["東", "南", "西", "北", "X"];
+
 const PointsTable = ({ points, mahjongs, settings }) => {
     let pointsSum = Array(settings.noPlayers).fill(settings.startPoints);
     let windPlayer = 0;
+    let wind = 0;
     let transaction = [];
     const calculateTransaction = round => {
         transaction = Array(settings.noPlayers).fill(0);
@@ -22,22 +25,26 @@ const PointsTable = ({ points, mahjongs, settings }) => {
             transaction = points[round];
         }
         windPlayer = mahjongs[round] == windPlayer ? windPlayer : windPlayer + 1;
+        if (windPlayer >= settings.noPlayers) {
+            windPlayer = 0;
+            wind += 1;
+        }
         pointsSum = pointsSum.map((p, i) => p + transaction[i]);
     }
 
     return (
         <div className="points-table">
-            <PointsRow key="points-init" points={pointsSum} wind={0} />
+            <PointsRow points={pointsSum} wind={0} />
             { points && points.map((round, i) => {
                 calculateTransaction(i);
                 return (
-                    <>
-                        <RoundRow key={"round-" + i} points={round} mahjong={mahjongs[i]} />
+                    <Fragment key={i}>
+                        <RoundRow points={round} mahjong={mahjongs[i]} />
                         { settings.pointsDistribution >= 2 &&
-                            <TransactionRow key={"transaction-" + i} points={transaction} />
+                            <TransactionRow points={transaction} />
                         }
-                        <PointsRow key={"points-" + i} points={pointsSum} wind={windPlayer} />
-                    </>
+                        <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} />
+                    </Fragment>
                 )
             })}
         </div>
