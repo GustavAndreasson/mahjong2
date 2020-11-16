@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import "./PointsInput.scss";
 
-const PointsInput = ({ settings }) => {
+const PointsInput = ({ settings, update }) => {
     const [values, setValues] = useState(Array(settings.noPlayers).fill(""));
     const [mahjong, setMahjong] = useState(-1);
-    const handleSubmit = () => {
-        if (mahjong >= 0 && values.every(v => v === parseInt(v, 10))) {
-            console.log(values);
-        } else {
-            console.log("nope");
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (mahjong >= 0 && (
+            ((settings.pointsDistribution == 2 || settings.pointsDistribution == 0) && values.every(v => /^[0-9]+$/.test(v)))
+            || /^[0-9]+$/.test(values[mahjong])
+        )) {
+            update(values.map((v, i) =>
+                settings.pointsDistribution == 2
+                || settings.pointsDistribution == 0
+                || i == mahjong
+                ? parseInt(v) : 0
+            ), mahjong);
+            setValues(Array(settings.noPlayers).fill(""));
+            setMahjong(-1);
         }
     }
 
     return (
         <div className="points-input">
-            <form onSubmit={handleSubmit}>
+            <form id="points-form" onSubmit={handleSubmit}>
                 {settings && [...Array(settings.noPlayers)].map((_, i) => (
                     <div key={i} className="input-cell">
                         <span className="token">

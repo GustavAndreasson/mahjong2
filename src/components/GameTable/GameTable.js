@@ -4,10 +4,10 @@ import Names from "./Names";
 import PointsInput from "./PointsInput";
 import PointsTable from "./PointsTable";
 
-const GameTable = ({ game }) => (
+const GameTable = ({ game, update }) => (
     <div className="game-table">
         <Names names={game.names} />
-        <PointsInput settings={game.settings} />
+        <PointsInput settings={game.settings} update={update} />
         <PointsTable points={game.points} mahjongs={game.mahjongs} settings={game.settings} />
     </div>
 )
