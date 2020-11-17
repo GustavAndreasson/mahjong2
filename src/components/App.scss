@@ -62,3 +62,24 @@ a {
     border: 1px solid #666666;
     box-shadow: 5px 5px 3px #666666;
 }
+
+.popup {
+    box-shadow: 5px 5px 3px #666666;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /*transform: translate(-50%, -50%);*/
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding: 5px;
+    border: 1px solid #666666;
+    overflow: hidden;
+    .pu-background {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        z-index: -1;
+    }
+}

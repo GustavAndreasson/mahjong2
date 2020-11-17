@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.scss";
 import Header from "./Header";
+import Settings from "./Settings";
 import GameTable from "./GameTable";
 import Buttons from "./Buttons";
 import useLocalStorage from "Hooks/useLocalStorage";
@@ -17,23 +18,37 @@ const App = () => {
         }
     });
 
+    const [settingsOpen, showSettings] = useState(false);
+
     const update = (points, mahjong) => {
         setGame(Object.assign({}, game,
             {points: [...game.points, points]},
-            {mahjongs: [...game.mahjongs, mahjong]})
-        );
+            {mahjongs: [...game.mahjongs, mahjong]}
+        ));
     }
 
     const undoRound = () => {
         setGame(Object.assign({}, game,
             {points: game.points.slice(0, game.points.length - 1)},
-            {mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)})
-        );
+            {mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)}
+        ));
+    }
+
+    const updateSettings = settings => {
+        showSettings(false);
+        setGame(Object.assign({}, game,
+            {settings: settings}
+        ));
     }
 
     return (
         <>
-            <Header />
+            <Header showSettings={() => showSettings(true)} />
+            { settingsOpen && <Settings
+                settings={game.settings}
+                updateSettings={updateSettings}
+                closeSettings={() => showSettings(false)}
+            /> }
             <GameTable game={game} update={update} />
             <Buttons undoRound={undoRound} />
         </>
