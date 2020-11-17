@@ -1,11 +1,11 @@
 import React from "react";
 import "./Names.scss";
 
-const Names = ({ names }) => (
+const Names = ({ names, change }) => (
     <div className="names">
         <div>
             {names && names.map((name, i) => (
-                <div key={i}>{name}</div>
+                <div key={i} onClick={() => change(i)}>{name}</div>
             ))}
         </div>
     </div>

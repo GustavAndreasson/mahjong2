@@ -36,6 +36,7 @@ const PointsInput = ({ settings, update }) => {
                         <input type="number" step="1" maxLength="3" size="3"
                             value={values[i]}
                             onChange={e => setValues(values.map((v, j) => i===j ? e.target.value : v))}
+                            onFocus={e => e.target.select()}
                         />
                     </div>
                 ))}

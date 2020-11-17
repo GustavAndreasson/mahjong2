@@ -1,0 +1,25 @@
+.name-change {
+    width: 186px;
+    margin-left: -93px;
+    margin-top: -64px;
+    padding: 10px;
+    z-index: 30;
+
+    .text {
+        padding: 10px;
+    }
+
+    input {
+        width: 160px;
+        font-size: 16px;
+    }
+
+    .confirm {
+        margin-top: 10px;
+        float: right;
+
+        button {
+            width: 70px;
+        }
+    }
+}

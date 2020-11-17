@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.scss";
 import Header from "./Header";
 import Settings from "./Settings";
+import NameChange from "./NameChange";
 import GameTable from "./GameTable";
 import Buttons from "./Buttons";
 import useLocalStorage from "Hooks/useLocalStorage";
@@ -37,10 +38,18 @@ const App = () => {
     }
 
     const updateSettings = settings => {
-        showSettings(false);
         setGame(Object.assign({}, game,
             {settings: settings}
         ));
+    }
+
+    const [nameChangePlayer,setNameChangePlayer] = useState(-1);
+
+    const updateName = name => {
+        setGame(Object.assign({}, game,
+            {names: game.names.map((n,i) => i == nameChangePlayer ? name : n)}
+        ));
+        setNameChangePlayer(-1);
     }
 
     return (
@@ -51,7 +60,11 @@ const App = () => {
                 updateSettings={updateSettings}
                 closeSettings={() => showSettings(false)}
             /> }
-            <GameTable game={game} update={update} />
+            { nameChangePlayer >= 0 && <NameChange
+                name={game.names[nameChangePlayer]}
+                updateName={updateName} 
+            /> }
+            <GameTable game={game} update={update} nameClick={setNameChangePlayer} />
             <Buttons undoRound={undoRound} />
         </>
     )
