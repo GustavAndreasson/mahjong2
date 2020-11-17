@@ -9,8 +9,8 @@ import useLocalStorage from "Hooks/useLocalStorage";
 const App = () => {
     const [game, setGame] = useLocalStorage("game", {
         names: ["Gösta", "Helge", "Folke", "Cecilia"],
-        points: [[2, 4, 6, 8], [8, 6, 4, 2]],
-        mahjongs: [0, 2],
+        points: [],
+        mahjongs: [],
         settings: {
             noPlayers: 4,
             pointsDistribution: 2,
@@ -28,10 +28,12 @@ const App = () => {
     }
 
     const undoRound = () => {
-        setGame(Object.assign({}, game,
-            {points: game.points.slice(0, game.points.length - 1)},
-            {mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)}
-        ));
+        if (game.points.length) {
+            setGame(Object.assign({}, game,
+                {points: game.points.slice(0, game.points.length - 1)},
+                {mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)}
+            ));
+        }
     }
 
     const updateSettings = settings => {
