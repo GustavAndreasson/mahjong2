@@ -3,6 +3,7 @@ import "./App.scss";
 import Header from "./Header";
 import Settings from "./Settings";
 import NameChange from "./NameChange";
+import SaveGames from "./SaveGames";
 import GameTable from "./GameTable";
 import Buttons from "./Buttons";
 import useLocalStorage from "Hooks/useLocalStorage";
@@ -52,9 +53,11 @@ const App = () => {
         setNameChangePlayer(-1);
     }
 
+    const [saveGamesOpen, showSaveGames] = useState(false);
+
     return (
         <>
-            <Header showSettings={() => showSettings(true)} />
+            <Header showSettings={() => showSettings(true)} showSaveGames={() => showSaveGames(true)}/>
             { settingsOpen && <Settings
                 settings={game.settings}
                 updateSettings={updateSettings}
@@ -62,7 +65,12 @@ const App = () => {
             /> }
             { nameChangePlayer >= 0 && <NameChange
                 name={game.names[nameChangePlayer]}
-                updateName={updateName} 
+                updateName={updateName}
+            /> }
+            { saveGamesOpen && <SaveGames
+                game={game}
+                open={g => setGame(g)}
+                close={() => showSaveGames(false)}
             /> }
             <GameTable game={game} update={update} nameClick={setNameChangePlayer} />
             <Buttons undoRound={undoRound} />
