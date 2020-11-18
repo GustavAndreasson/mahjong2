@@ -4,7 +4,11 @@ import "./SaveGames.scss";
 
 const SaveGames = ({ game, open, close }) => {
     const [saveList, setSaveList] = useLocalStorage("savelist", []);
-    const [currentSave, setCurrentSave] = useState(-1);
+    let bestSave = saveList.reduce(
+        (res, s, i) => game.names.join() === s.names.join() && s.date > res[1] ? [i, s.date] : res
+        , [-1, "0"]
+    )[0];
+    const [currentSave, setCurrentSave] = useState(bestSave);
     const now = (new Date()).toISOString();
     const handleSave = () => {
         setSaveList(currentSave == -1
