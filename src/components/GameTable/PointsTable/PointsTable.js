@@ -34,7 +34,7 @@ const PointsTable = ({ points, mahjongs, settings }) => {
 
     return (
         <div className="points-table">
-            <PointsRow points={pointsSum} wind={0} />
+            <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} />
             { points && points.map((round, i) => {
                 calculateTransactions(i);
                 return (

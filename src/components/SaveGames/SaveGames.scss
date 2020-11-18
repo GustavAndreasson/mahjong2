@@ -15,7 +15,7 @@
 
         .option {
             padding: 3px;
-            font-size: 12px;
+            font-size: 13px;
             cursor: default;
             overflow: hidden;
 
@@ -31,6 +31,7 @@
 
     .confirm {
         margin-top: 0px;
+        float: right;
 
         button {
             width: auto;

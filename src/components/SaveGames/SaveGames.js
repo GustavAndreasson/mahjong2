@@ -18,6 +18,10 @@ const SaveGames = ({ game, open, close }) => {
         open(saveList[currentSave]);
         close();
     }
+    const handleRemove = () => {
+        setSaveList(saveList.filter((s, i) => i !== currentSave));
+        setCurrentSave(-1);
+    }
 
     return (
         <div className="save-games popup">
@@ -37,18 +41,15 @@ const SaveGames = ({ game, open, close }) => {
                             onClick={() => setCurrentSave(i)}
                         >
                             <span className="save-names">{s.names.join(" ")}</span>
-                            <span className="save-date">{s.date}</span>
+                            <span className="save-date">{s.date.slice(0,10)}</span>
                         </div>
                     ))}
                 </div>
                 <div className="confirm">
                     <button type="button" onClick={close}>Avbryt</button>
                     <button type="button" onClick={handleSave}>Spara</button>
-                    <button type="button"
-                        onClick={() => setSaveList(saveList.filter((s, i) => i !== currentSave))}
-                        disabled={currentSave===-1}
-                    >Ta bort</button>
-                    <button type="submit" disabled={currentSave===-1} >Öppna</button>
+                    <button type="button" onClick={handleRemove} disabled={currentSave===-1}>Ta bort</button>
+                    <button type="submit" disabled={currentSave===-1}>Öppna</button>
                 </div>
             </form>
         </div>

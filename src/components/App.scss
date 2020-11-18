@@ -15,8 +15,11 @@ h2 {
     font-weight: normal;
 }
 
-input[type=button], input[type=submit], button {
+button {
     height: 34px;
+    & + button {
+        margin-left: 4px;
+    }
 }
 
 input::-webkit-outer-spin-button,
