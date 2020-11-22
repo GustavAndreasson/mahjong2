@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import "./Settings.scss";
+import ConfirmNewGame from "./ConfirmNewGame";
 
-const Settings = ({ settings, updateSettings, closeSettings }) => {
+const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
     const [noPlayers, setNoPlayers] = useState(settings.noPlayers);
     const [pointsDistribution, setPointsDistribution] = useState(settings.pointsDistribution);
     const [startPoints, setStartPoints] = useState(settings.startPoints);
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const handleSubmit = e => {
         e.preventDefault();
+        if (newGame) {
+            saveSettings();
+        } else {
+            setShowConfirm(true);
+        }
+    }
+
+    const saveSettings = () => {
         updateSettings({
             noPlayers: noPlayers,
             pointsDistribution: pointsDistribution,
@@ -84,6 +94,9 @@ const Settings = ({ settings, updateSettings, closeSettings }) => {
                     <button type="submit">OK</button>
                 </div>
             </form>
+            { showConfirm &&
+                <ConfirmNewGame confirm={saveSettings} cancel={() => setShowConfirm(false)} />
+            }
         </div>
     )
 }

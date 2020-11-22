@@ -40,7 +40,11 @@ const App = () => {
 
     const updateSettings = settings => {
         setGame(Object.assign({}, game,
-            {settings: settings}
+            {
+                points: [],
+                mahjongs: [],
+                settings: settings
+            }
         ));
     }
 
@@ -62,6 +66,7 @@ const App = () => {
                 settings={game.settings}
                 updateSettings={updateSettings}
                 closeSettings={() => showSettings(false)}
+                newGame={game.points.length === 0}
             /> }
             { nameChangePlayer >= 0 && <NameChange
                 name={game.names[nameChangePlayer]}
