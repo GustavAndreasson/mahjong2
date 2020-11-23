@@ -23,37 +23,35 @@ const App = () => {
     const [settingsOpen, showSettings] = useState(false);
 
     const update = (points, mahjong) => {
-        setGame(Object.assign({}, game,
-            {points: [...game.points, points]},
-            {mahjongs: [...game.mahjongs, mahjong]}
-        ));
+        setGame(Object.assign({}, game, {
+            points: [...game.points, points],
+            mahjongs: [...game.mahjongs, mahjong]
+        }));
     }
 
     const undoRound = () => {
         if (game.points.length) {
-            setGame(Object.assign({}, game,
-                {points: game.points.slice(0, game.points.length - 1)},
-                {mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)}
-            ));
+            setGame(Object.assign({}, game, {
+                points: game.points.slice(0, game.points.length - 1),
+                mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1)
+            }));
         }
     }
 
     const updateSettings = settings => {
-        setGame(Object.assign({}, game,
-            {
-                points: [],
-                mahjongs: [],
-                settings: settings
-            }
-        ));
+        setGame(Object.assign({}, game, {
+            points: [],
+            mahjongs: [],
+            settings: settings
+        }));
     }
 
     const [nameChangePlayer,setNameChangePlayer] = useState(-1);
 
     const updateName = name => {
-        setGame(Object.assign({}, game,
-            {names: game.names.map((n,i) => i == nameChangePlayer ? name : n)}
-        ));
+        setGame(Object.assign({}, game, {
+            names: game.names.map((n,i) => i == nameChangePlayer ? name : n)
+        }));
         setNameChangePlayer(-1);
     }
 
