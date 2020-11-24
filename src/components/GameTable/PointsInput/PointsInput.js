@@ -17,7 +17,7 @@ const PointsInput = ({ settings, pause, update }) => {
                 || i == mahjong)
                 && !(pause && pause.includes(i))
                 ? parseInt(v) : 0
-            ), parseInt(mahjong));
+            ), mahjong);
             setValues(Array(settings.noPlayers).fill(""));
             setMahjong(-1);
         }
@@ -31,7 +31,7 @@ const PointsInput = ({ settings, pause, update }) => {
                         <span className="token">
                             <input type="radio" name="mahjong" id={"mahjong_" + i} value={i}
                                 checked={mahjong == i}
-                                onChange={e => setMahjong(e.target.value)}
+                                onChange={e => setMahjong(parseInt(e.target.value))}
                                 disabled={pause && pause.includes(i)}
                             />
                             <label htmlFor={"mahjong_" + i}>M</label>

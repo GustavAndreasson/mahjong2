@@ -39,7 +39,7 @@ input[type=radio], input[type=checkbox] {
 
 input[type=radio] + label, input[type=checkbox] + label {
     display:inline-block;
-    padding: 0px 4px;
+    padding: 4px;
     background-color: #e7e7e7;
     color: #bbbbbb;
     cursor: pointer;
@@ -48,6 +48,10 @@ input[type=radio] + label, input[type=checkbox] + label {
 input[type=radio]:checked + label, input[type=checkbox]:checked + label {
     background-color:#d0d0d0;
     color: #000000;
+}
+
+input[type=radio]:disabled + label, input[type=checkbox]:disabled + label {
+    cursor: default;
 }
 
 a {
