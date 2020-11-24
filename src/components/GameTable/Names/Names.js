@@ -1,11 +1,11 @@
 import React from "react";
 import "./Names.scss";
 
-const Names = ({ names, change }) => (
+const Names = ({ names, pause, edit }) => (
     <div className="names">
         <div>
             {names && names.map((name, i) => (
-                <div key={i} onClick={() => change(i)}>{name}</div>
+                <div key={i} className={pause && pause.includes(i) ? "paused" : ""} onClick={() => edit(i)}>{name}</div>
             ))}
         </div>
     </div>
