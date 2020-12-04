@@ -1,8 +1,22 @@
 .names {
     display: table-header-group;
 
+    @media (max-width : 460px) {
+        position: fixed;
+        top: 45px;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        display: table;
+        table-layout: fixed;
+    }
+
     div {
         display: table-row;
+
+        @media (max-width : 460px) {
+            padding-top: 2px;
+        }
 
         div {
             display: table-cell;
@@ -19,6 +33,10 @@
             padding-left: 15px;
             padding-right: 15px;
             white-space: nowrap;
+
+            @media (max-width : 460px) {
+                width: auto;
+            }
         }
     }
 }

@@ -3,8 +3,52 @@
     overflow: hidden;
     text-align: right;
 
+    @media (max-width : 460px) {
+        box-sizing: border-box;
+        background-color: #e7e7e7;
+        padding: 3px;
+        height: 45px;
+        margin: 0px;
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+        text-align: left;
+        border-bottom: solid 4px #ffffff;
+    }
+
+    button {
+        height: 30px;
+        width: 30px;
+        padding: 4px;
+        font-size: 19px;
+
+        @media (max-width : 460px) {
+            position: absolute;
+            left: 7px;
+            top: 7px;
+
+            &.save-button {
+                left: auto;
+                right: 7px;
+            }
+        }
+    }
+
     h1 {
         font-size: 32px;
         margin: 5px 10px;
+
+        @media (max-width : 460px) {
+            font-size: 18px;
+            margin: 7px 30px;
+        }
+    }
+}
+
+.headerspacer {
+    @media (max-width : 460px) {
+        padding: 3px;
+        height: 39px;
+        margin: 0px;
     }
 }
