@@ -43,6 +43,9 @@ const App = () => {
 
     const updateSettings = settings => {
         setGame(Object.assign({}, game, {
+            names: game.names.length > settings.noPlayers
+                ? game.names.slice(0, settings.noPlayers)
+                : game.names.concat(Array(settings.noPlayers - game.names.length).fill("")),
             points: [],
             mahjongs: [],
             pause: null,
