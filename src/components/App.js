@@ -41,19 +41,24 @@ const App = () => {
         }
     }
 
-    const updateSettings = settings => {
+    const updateSettings = (settings, restart) => {
+        const noPlayersChange = settings.noPlayers - game.settings.noPlayers;
         setGame(Object.assign({}, game, {
-            names: game.names.length > settings.noPlayers
+            names: noPlayersChange < 0
                 ? game.names.slice(0, settings.noPlayers)
-                : game.names.concat(Array(settings.noPlayers - game.names.length).fill("")),
-            points: [],
-            mahjongs: [],
-            pause: null,
+                : game.names.concat(Array(noPlayersChange).fill("")),
+            points: restart ? [] : game.points.map(p => p.concat(Array(noPlayersChange).fill(0))),
+            mahjongs: restart ? [] : game.mahjongs,
+            pause: restart ? null : (game.pause || Array(game.points.length + 1).fill(null)).map((p, i) =>
+                i == game.points.length ? (p || []) : (p || []).concat(
+                    Array(noPlayersChange).fill(null).map((_, i) => i + game.settings.noPlayers)
+                )
+            ),
             settings: settings
         }));
     }
 
-    const [nameChangePlayer,setNameChangePlayer] = useState(-1);
+    const [nameChangePlayer, setNameChangePlayer] = useState(-1);
 
     const updatePlayer = (name, paused) => {
         let pause = null;

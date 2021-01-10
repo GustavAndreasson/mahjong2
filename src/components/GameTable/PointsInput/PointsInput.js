@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PointsInput.scss";
 
 const PointsInput = ({ settings, pause, update }) => {
@@ -23,10 +23,14 @@ const PointsInput = ({ settings, pause, update }) => {
         }
     }
 
+    useEffect(() => {
+        setValues(Array(settings.noPlayers).fill(""));
+    }, [settings]);
+
     return (
         <div className="points-input">
             <form id="points-form" onSubmit={handleSubmit}>
-                {settings && [...Array(settings.noPlayers)].map((_, i) => (
+                {values && values.map((value, i) => (
                     <div key={i} className={"input-cell" + (pause && pause.includes(i) ? " paused" : "")}>
                         <span className="token">
                             <input type="radio" name="mahjong" id={"mahjong_" + i} value={i}
@@ -37,7 +41,7 @@ const PointsInput = ({ settings, pause, update }) => {
                             <label htmlFor={"mahjong_" + i}>M</label>
                         </span>
                         <input type="number" step="1" maxLength="3" size="3"
-                            value={values[i]}
+                            value={value}
                             onChange={e => setValues(values.map((v, j) => i===j ? e.target.value : v))}
                             onFocus={e => e.target.select()}
                             disabled={

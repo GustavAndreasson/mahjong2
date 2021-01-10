@@ -4,7 +4,7 @@ import "./ConfirmNewGame.scss";
 const ConfirmNewGame = ({ cancel, confirm }) => (
     <div className="confirm-new-game popup">
         <div className="pu-background"></div>
-        <p>Om du sparar inställningarna så kommer matchen startas om.</p>
+        <p>Det pågående spelet kommer inte gå att återställa om du inte har sparat det.</p>
         <p>Är det säkert att du vill fortsätta?</p>
         <div className="confirm">
             <button type="button" onClick={cancel}>Avbryt</button>

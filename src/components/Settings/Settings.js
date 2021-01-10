@@ -10,19 +10,27 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        if (noPlayers < settings.noPlayers) {
+            alert("Det går inte sänka antalet spelare i ett pågående spel.\nAnvänd pausfunktionen på spelaren som slutar.");
+        } else {
+            saveSettings(false);
+        }
+    }
+
+    const startNewGame = () => {
         if (newGame) {
-            saveSettings();
+            saveSettings(true);
         } else {
             setShowConfirm(true);
         }
     }
 
-    const saveSettings = () => {
+    const saveSettings = restart => {
         updateSettings({
             noPlayers: noPlayers,
             pointsDistribution: pointsDistribution,
             startPoints: startPoints
-        });
+        }, restart);
         closeSettings();
     }
 
@@ -91,11 +99,12 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
                 </div>
                 <div className="confirm">
                     <button type="button" onClick={closeSettings}>Avbryt</button>
+                    <button type="button" onClick={startNewGame}>Nytt spel</button>
                     <button type="submit">OK</button>
                 </div>
             </form>
             { showConfirm &&
-                <ConfirmNewGame confirm={saveSettings} cancel={() => setShowConfirm(false)} />
+                <ConfirmNewGame confirm={() => saveSettings(true)} cancel={() => setShowConfirm(false)} />
             }
         </div>
     )
