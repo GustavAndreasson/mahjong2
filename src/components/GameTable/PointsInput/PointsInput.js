@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./PointsInput.scss";
 
-const PointsInput = ({ settings, pause, update }) => {
+const PointsInput = ({ settings, pause, update, setAllowSubmit }) => {
     const [values, setValues] = useState(Array(settings.noPlayers).fill(""));
     const [mahjong, setMahjong] = useState(-1);
     const handleSubmit = e => {
         e.preventDefault()
         if (mahjong >= 0 && (
             ((settings.pointsDistribution == 2 || settings.pointsDistribution == 0)
-                && values.every((v, i) => /^[0-9]+$/.test(v) && !(pause && pause.includes(i))))
-            || /^[0-9]+$/.test(values[mahjong])
+                && values.every((v, i) => /^[0-9]+$/.test(v) || (pause && pause.includes(i))))
+            || ((settings.pointsDistribution == 3 || settings.pointsDistribution == 1)
+                &&/^[0-9]+$/.test(values[mahjong]))
         )) {
             update(values.map((v, i) =>
                 (settings.pointsDistribution == 2
@@ -26,6 +27,15 @@ const PointsInput = ({ settings, pause, update }) => {
     useEffect(() => {
         setValues(Array(settings.noPlayers).fill(""));
     }, [settings]);
+
+    useEffect(() => {
+        setAllowSubmit(mahjong >= 0 && (
+            ((settings.pointsDistribution == 2 || settings.pointsDistribution == 0)
+                && values.every((v, i) => /^[0-9]+$/.test(v) || (pause && pause.includes(i))))
+            || ((settings.pointsDistribution == 3 || settings.pointsDistribution == 1)
+                && /^[0-9]+$/.test(values[mahjong]))
+        ));
+    }, [values, mahjong]);
 
     return (
         <div className="points-input">

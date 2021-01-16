@@ -86,6 +86,8 @@ const App = () => {
 
     const [saveGamesOpen, showSaveGames] = useState(false);
 
+    const [allowSubmit, setAllowSubmit] = useState(false);
+
     return (
         <>
             <Header showSettings={() => showSettings(!settingsOpen)} showSaveGames={() => showSaveGames(!saveGamesOpen)}/>
@@ -106,8 +108,8 @@ const App = () => {
                 open={g => setGame(g)}
                 close={() => showSaveGames(false)}
             /> }
-            <GameTable game={game} update={update} nameClick={setNameChangePlayer} />
-            <Buttons undoRound={undoRound} />
+            <GameTable game={game} update={update} nameClick={setNameChangePlayer} setAllowSubmit={setAllowSubmit} />
+            <Buttons undoRound={undoRound} allowUndo={!!game.points.length} allowSubmit={allowSubmit} />
         </>
     )
 }

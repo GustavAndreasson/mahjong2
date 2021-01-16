@@ -4,7 +4,7 @@ import Names from "./Names";
 import PointsInput from "./PointsInput";
 import PointsTable from "./PointsTable";
 
-const GameTable = ({ game, update, nameClick }) => (
+const GameTable = ({ game, update, nameClick, setAllowSubmit }) => (
     <div className="game-table">
         <Names
             names={game.names}
@@ -15,6 +15,7 @@ const GameTable = ({ game, update, nameClick }) => (
             settings={game.settings}
             pause={game.pause && game.pause[game.pause.length - 1]}
             update={update}
+            setAllowSubmit={setAllowSubmit}
         />
         <PointsTable
             points={game.points}
