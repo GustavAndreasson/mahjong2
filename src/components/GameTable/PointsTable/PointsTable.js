@@ -21,7 +21,7 @@ const PointsTable = ({ points, mahjongs, pause, settings }) => {
         points[round].forEach((p2, j) => {
           if (!(pause && pause[round] && (pause[round].includes(i) || pause[round].includes(j))) && i != j) {
             transactions[i] += (i == mahjongs[round] ? p : (j == mahjongs[round] ? -p2 : p - p2))
-              * ((p == windPlayer || p2 == windPlayer) ? 2 : 1)
+              * ((i == windPlayer || j == windPlayer) ? 2 : 1)
           }
         });
       });
