@@ -64,7 +64,7 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
                     </span>
                 </div>
                 <div className="setting">
-                    <span className="setting-label">Antal spelare</span>
+                    <span className="setting-label">Poängutdelning</span>
                     <span className="setting-options">
                         <input type="radio" name="points-distribution" value="0" id="points-distribution-0"
                             checked={pointsDistribution == 0}
