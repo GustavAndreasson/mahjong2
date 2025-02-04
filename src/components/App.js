@@ -90,7 +90,16 @@ const App = () => {
 
     return (
         <>
-            <Header showSettings={() => showSettings(!settingsOpen)} showSaveGames={() => showSaveGames(!saveGamesOpen)}/>
+            <Header
+		showSettings={() => {
+		    showSettings(!settingsOpen);
+		    showSaveGames(false);
+		}}
+		showSaveGames={() => {
+		    showSaveGames(!saveGamesOpen);
+		    showSettings(false);
+		}}
+	    />
             { settingsOpen && <Settings
                 settings={game.settings}
                 updateSettings={updateSettings}
