@@ -27,6 +27,11 @@
             left: 7px;
             top: 7px;
 
+            &.share-button {
+                left: auto;
+                right: 41px;
+            }
+
             &.save-button {
                 left: auto;
                 right: 7px;

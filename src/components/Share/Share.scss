@@ -1,0 +1,19 @@
+.share {
+    width: 400px;
+    margin-left: -200px;
+    margin-top: -222px;
+
+    .share-text {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .share-link {
+        margin-bottom: 10px;
+        
+        input {
+            width: 300px;
+            margin-right: 5px;
+        }
+    }
+}

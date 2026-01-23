@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import JSONCrush from "jsoncrush"; 
 import "./App.scss";
 import Header from "./Header";
 import Settings from "./Settings";
+import Share from "./Share";
 import NameChange from "./NameChange";
 import SaveGames from "./SaveGames";
 import GameTable from "./GameTable";
@@ -20,8 +22,6 @@ const App = () => {
             startPoints: 2000
         }
     });
-
-    const [settingsOpen, showSettings] = useState(false);
 
     const update = (points, mahjong) => {
         setGame(Object.assign({}, game, {
@@ -84,22 +84,46 @@ const App = () => {
         setNameChangePlayer(-1);
     }
 
+    const [shareOpen, showShare] = useState(false);
+    const [settingsOpen, showSettings] = useState(false);
     const [saveGamesOpen, showSaveGames] = useState(false);
 
     const [allowSubmit, setAllowSubmit] = useState(false);
 
+    useEffect(() => {
+        if (location.search?.includes("g=")) {
+            try {
+                setGame(JSON.parse(JSONCrush.uncrush(decodeURIComponent(location.search.substring(location.search.indexOf("g=") + 2)))));
+            } catch(e) {
+                console.error("Could not load gamestate from query.")
+            }
+        }
+        history.replaceState({}, document.title, location.protocol + "//" + location.host + location.pathname);
+    }, [])
+
     return (
         <>
             <Header
-		showSettings={() => {
-		    showSettings(!settingsOpen);
-		    showSaveGames(false);
-		}}
-		showSaveGames={() => {
-		    showSaveGames(!saveGamesOpen);
-		    showSettings(false);
-		}}
-	    />
+                showShare={() => {
+                    showShare(!settingsOpen);
+                    showSettings(false);
+                    showSaveGames(false);
+                }}
+                showSettings={() => {
+                    showSettings(!settingsOpen);
+                    showShare(false);
+                    showSaveGames(false);
+                }}
+                showSaveGames={() => {
+                    showSaveGames(!saveGamesOpen);
+                    showShare(false);
+                    showSettings(false);
+                }}
+            />
+            { shareOpen && <Share
+                gameData={JSONCrush.crush(JSON.stringify(game))}
+                closeShare={() => showShare(false)}
+            /> }
             { settingsOpen && <Settings
                 settings={game.settings}
                 updateSettings={updateSettings}
