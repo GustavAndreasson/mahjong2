@@ -9,6 +9,7 @@ const Share = ({ gameData, closeShare }) => {
         refInput.current.setSelectionRange(0, 99999)
         navigator.clipboard.writeText(refInput.current.value)
     }
+    
     return (
         <div className="share popup">
             <div className="pu-background"></div>

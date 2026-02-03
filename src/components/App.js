@@ -24,26 +24,29 @@ const App = () => {
     });
 
     const update = (points, mahjong) => {
-        setGame(Object.assign({}, game, {
+        setGame({
+            ...game,
             points: [...game.points, points],
             mahjongs: [...game.mahjongs, mahjong],
             pause: game.pause && [...game.pause, game.pause[game.pause.length - 1]]
-        }));
+        });
     }
 
     const undoRound = () => {
         if (game.points.length) {
-            setGame(Object.assign({}, game, {
-                points: game.points.slice(0, game.points.length - 1),
-                mahjongs: game.mahjongs.slice(0, game.mahjongs.length - 1),
-                pause: game.pause && game.pause.slice(0, game.pause.length - 1)
-            }));
+            setGame({
+                ...game, 
+                points: game.points.slice(0, -1),
+                mahjongs: game.mahjongs.slice(0, -1),
+                pause: game.pause?.slice(0, -1)
+            });
         }
     }
 
     const updateSettings = (settings, restart) => {
         const noPlayersChange = settings.noPlayers - game.settings.noPlayers;
-        setGame(Object.assign({}, game, {
+        setGame({
+            ...game, 
             names: noPlayersChange < 0
                 ? game.names.slice(0, settings.noPlayers)
                 : game.names.concat(Array(noPlayersChange).fill("")),
@@ -55,7 +58,7 @@ const App = () => {
                 )
             ),
             settings: settings
-        }));
+        });
     }
 
     const [nameChangePlayer, setNameChangePlayer] = useState(-1);
@@ -77,10 +80,11 @@ const App = () => {
                 pause = Object.assign([], [], {[round]: [nameChangePlayer]});
             }
         }
-        setGame(Object.assign({}, game, {
+        setGame({
+            ...game, 
             names: game.names.map((n,i) => i == nameChangePlayer ? name : n),
             pause: pause || game.pause
-        }));
+        });
         setNameChangePlayer(-1);
     }
 
@@ -95,7 +99,7 @@ const App = () => {
             try {
                 setGame(JSON.parse(JSONCrush.uncrush(decodeURIComponent(location.search.substring(location.search.indexOf("g=") + 2)))));
             } catch(e) {
-                console.error("Could not load gamestate from query.")
+                console.error("Could not load gamestate from query. ${e}")
             }
         }
         history.replaceState({}, document.title, location.protocol + "//" + location.host + location.pathname);
@@ -132,7 +136,7 @@ const App = () => {
             /> }
             { nameChangePlayer >= 0 && <NameChange
                 name={game.names[nameChangePlayer]}
-                paused={game.pause && game.pause[game.pause.length - 1].includes(nameChangePlayer) || false}
+                paused={game.pause?.[game.pause.length - 1].includes(nameChangePlayer) || false}
                 updatePlayer={updatePlayer}
                 cancel={() => setNameChangePlayer(-1)}
             /> }

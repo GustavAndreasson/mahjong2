@@ -42,15 +42,15 @@ const PointsTable = ({ points, mahjongs, pause, settings }) => {
   return (
     <div className="points-table">
       <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} />
-      {points && points.map((round, i) => {
+      {points?.map((round, i) => {
         calculateTransactions(i);
         return (
           <Fragment key={i}>
-            <RoundRow points={round} mahjong={mahjongs[i]} pause={pause && pause[i]} />
+            <RoundRow points={round} mahjong={mahjongs[i]} pause={pause?.[i]} />
             {settings.pointsDistribution >= 2 &&
-              <TransactionRow points={transactions} pause={pause && pause[i]} />
+              <TransactionRow points={transactions} pause={pause?.[i]} />
             }
-            <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} pause={pause && pause[i]} />
+            <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} pause={pause?.[i]} />
           </Fragment>
         )
       })}
