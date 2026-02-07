@@ -10,7 +10,7 @@
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^4.0.0",
-    "webpack": "^5.98.0"
+    "webpack": "^5.105.0"
   },
   "main": "./static/index.js",
   "scripts": {
