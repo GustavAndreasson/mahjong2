@@ -1,9 +1,9 @@
 import React from "react";
 import "./GameTable.scss";
-import Names from "./Names";
+import NamesRow from "./NamesRow";
 import PointsInput from "./PointsInput";
 import PointsTable from "./PointsTable";
-import type Game from "Types/Game";
+import Game from "Types/Game";
 
 interface GameTableProps {
         game: Game;
@@ -14,7 +14,7 @@ interface GameTableProps {
 
 const GameTable = ({ game, update, nameClick, setAllowSubmit }: GameTableProps) => (
     <div className="game-table">
-        <Names
+        <NamesRow
             names={game.names}
             pause={game.pause?.[game.pause.length - 1] ?? null}
             edit={nameClick}

@@ -1,16 +1,16 @@
 import React from "react";
-import "./Names.scss";
+import "./NamesRow.scss";
 
-interface NamesProps {
+interface NamesRowProps {
     names: string[];
     pause: number[] | null;
     edit: (index: number) => void;
 }
 
-const Names = ({ names, pause, edit }: NamesProps) => (
+const NamesRow = ({ names, pause, edit }: NamesRowProps) => (
     <div className="names">
         <div>
-            { names?.map((name, i) => (
+            { names.map((name, i) => (
                 <div key={i} className={pause?.includes(i) ? "paused" : ""} onClick={() => edit(i)}>
                     { pause?.includes(i) &&
                         <span className="fas fa-pause"></span>
@@ -22,4 +22,4 @@ const Names = ({ names, pause, edit }: NamesProps) => (
     </div>
 )
 
-export default Names;
+export default NamesRow;
