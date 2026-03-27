@@ -1,7 +1,12 @@
 import React from "react";
 import "./TransactionRow.scss";
 
-const TransactionRow = ({ points, pause }) => (
+interface TransactionRowProps {
+    points: number[];
+    pause: number[] | null;
+}
+
+const TransactionRow = ({ points, pause }: TransactionRowProps) => (
     <div className="transaction-row">
         { points?.map((point, i) => (
             <div key={i} className={pause?.includes(i) ? "paused" : ""}>

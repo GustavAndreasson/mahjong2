@@ -1,7 +1,13 @@
 import React from "react";
 import "./Buttons.scss";
 
-const Buttons = ({ undoRound, allowUndo, allowSubmit }) => (
+interface ButtonsProps {
+    undoRound: () => void;
+    allowUndo: boolean;
+    allowSubmit: boolean;
+}
+
+const Buttons = ({ undoRound, allowUndo, allowSubmit }: ButtonsProps) => (
     <div className="buttons">
         <button type="submit" form="points-form" disabled={!allowSubmit}>OK</button>
         <button type="button" onClick={undoRound} disabled={!allowUndo}>Ångra</button>

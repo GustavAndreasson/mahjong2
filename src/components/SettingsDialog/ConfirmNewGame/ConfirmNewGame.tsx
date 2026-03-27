@@ -1,7 +1,12 @@
 import React from 'react';
 import "./ConfirmNewGame.scss";
 
-const ConfirmNewGame = ({ cancel, confirm }) => (
+interface ConfirmNewGameProps {
+    cancel: () => void;
+    confirm: () => void;
+}
+
+const ConfirmNewGame = ({ cancel, confirm }: ConfirmNewGameProps) => (
     <div className="confirm-new-game popup">
         <div className="pu-background"></div>
         <p>Det pågående spelet kommer inte gå att återställa om du inte har sparat det.</p>

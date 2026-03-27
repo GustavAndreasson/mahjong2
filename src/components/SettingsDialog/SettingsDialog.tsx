@@ -1,14 +1,22 @@
 import React, { useState } from "react";
-import "./Settings.scss";
+import "./SettingsDialog.scss";
 import ConfirmNewGame from "./ConfirmNewGame";
+import type Settings from "Types/Settings";
 
-const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
-    const [noPlayers, setNoPlayers] = useState(settings.noPlayers);
-    const [pointsDistribution, setPointsDistribution] = useState(settings.pointsDistribution);
-    const [startPoints, setStartPoints] = useState(settings.startPoints);
-    const [showConfirm, setShowConfirm] = useState(false);
+interface SettingsDialogProps {
+    settings: Settings;
+    updateSettings: (settings: Settings, restart: boolean) => void;
+    closeSettings: () => void;
+    newGame: boolean;
+}
 
-    const handleSubmit = e => {
+const SettingsDialog = ({ settings, updateSettings, closeSettings, newGame }: SettingsDialogProps) => {
+    const [noPlayers, setNoPlayers] = useState<number>(settings.noPlayers);
+    const [pointsDistribution, setPointsDistribution] = useState<number>(settings.pointsDistribution);
+    const [startPoints, setStartPoints] = useState<number>(settings.startPoints);
+    const [showConfirm, setShowConfirm] = useState<boolean>(false);
+
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>): void => {
         e.preventDefault();
         if (noPlayers < settings.noPlayers) {
             alert("Det går inte sänka antalet spelare i ett pågående spel.\nAnvänd pausfunktionen på spelaren som slutar.");
@@ -17,7 +25,7 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
         }
     }
 
-    const startNewGame = () => {
+    const startNewGame = (): void => {
         if (newGame) {
             saveSettings(true);
         } else {
@@ -25,7 +33,7 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
         }
     }
 
-    const saveSettings = restart => {
+    const saveSettings = (restart: boolean): void => {
         updateSettings({
             noPlayers: noPlayers,
             pointsDistribution: pointsDistribution,
@@ -110,4 +118,4 @@ const Settings = ({ settings, updateSettings, closeSettings, newGame }) => {
     )
 }
 
-export default Settings;
+export default SettingsDialog;

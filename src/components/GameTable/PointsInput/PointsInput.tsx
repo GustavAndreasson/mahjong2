@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "./PointsInput.scss";
+import type Settings from "Types/Settings";
 
-const PointsInput = ({ settings, pause, update, setAllowSubmit }) => {
-    const [values, setValues] = useState(Array(settings.noPlayers).fill(""));
-    const [mahjong, setMahjong] = useState(-1);
-    const handleSubmit = e => {
+interface PointsInputProps {
+    settings: Settings;
+    pause: number[] | null;
+    update: (points: number[], mahjong: number) => void;
+    setAllowSubmit: (allow: boolean) => void;
+}
+
+const PointsInput = ({ settings, pause, update, setAllowSubmit }: PointsInputProps) => {
+    const [values, setValues] = useState<string[]>(Array(settings.noPlayers).fill(""));
+    const [mahjong, setMahjong] = useState<number>(-1);
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (mahjong >= 0 && (
-            ((settings.pointsDistribution == 2 || settings.pointsDistribution == 0)
-                && values.every((v, i) => /^\d+$/.test(v) || (pause?.includes(i))))
-            || ((settings.pointsDistribution == 3 || settings.pointsDistribution == 1)
+            ((settings.pointsDistribution === 2 || settings.pointsDistribution === 0)
+                && values.every((v: string, i: number) => /^\d+$/.test(v) || (pause?.includes(i))))
+            || ((settings.pointsDistribution === 3 || settings.pointsDistribution === 1)
                 &&/^\d+$/.test(values[mahjong]))
         )) {
-            update(values.map((v, i) =>
-                (settings.pointsDistribution == 2
-                || settings.pointsDistribution == 0
-                || i == mahjong)
+            update(values.map((v: string, i: number) =>
+                (settings.pointsDistribution === 2
+                || settings.pointsDistribution === 0
+                || i === mahjong)
                 && !(pause?.includes(i))
                 ? Number.parseInt(v) : 0
             ), mahjong);
@@ -30,9 +38,9 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }) => {
 
     useEffect(() => {
         setAllowSubmit(mahjong >= 0 && (
-            ((settings.pointsDistribution == 2 || settings.pointsDistribution == 0)
-                && values.every((v, i) => /^\d+$/.test(v) || (pause?.includes(i))))
-            || ((settings.pointsDistribution == 3 || settings.pointsDistribution == 1)
+            ((settings.pointsDistribution === 2 || settings.pointsDistribution === 0)
+                && values.every((v: string, i: number) => /^\d+$/.test(v) || (pause?.includes(i))))
+            || ((settings.pointsDistribution === 3 || settings.pointsDistribution === 1)
                 && /^\d+$/.test(values[mahjong]))
         ));
     }, [values, mahjong]);
@@ -44,7 +52,7 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }) => {
                     <div key={i} className={"input-cell" + (pause?.includes(i) ? " paused" : "")}>
                         <span className="token">
                             <input type="radio" name="mahjong" id={"mahjong_" + i} value={i}
-                                checked={mahjong == i}
+                                checked={mahjong === i}
                                 onChange={e => setMahjong(Number.parseInt(e.target.value))}
                                 disabled={pause?.includes(i)}
                             />
@@ -56,7 +64,7 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }) => {
                             onFocus={e => e.target.select()}
                             disabled={
                                 (pause?.includes(i))
-                                || ((settings.pointsDistribution == 1 || settings.pointsDistribution == 3) && mahjong !== i)
+                                || ((settings.pointsDistribution === 1 || settings.pointsDistribution === 3) && mahjong !== i)
                             }
                         />
                     </div>

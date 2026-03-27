@@ -1,7 +1,12 @@
 import React from "react";
 import "./Header.scss";
 
-const Header = ({ showShare, showSettings, showSaveGames }) => (
+interface HeaderProps {
+    showShare: () => void;
+    showSettings: () => void;
+    showSaveGames: () => void;
+}
+const Header = ({ showShare, showSettings, showSaveGames }: HeaderProps) => (
     <>
         <div className="header">
             <h1>Mahjong poängtabell</h1>

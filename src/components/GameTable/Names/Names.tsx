@@ -1,7 +1,13 @@
 import React from "react";
 import "./Names.scss";
 
-const Names = ({ names, pause, edit }) => (
+interface NamesProps {
+    names: string[];
+    pause: number[] | null;
+    edit: (index: number) => void;
+}
+
+const Names = ({ names, pause, edit }: NamesProps) => (
     <div className="names">
         <div>
             { names?.map((name, i) => (

@@ -1,7 +1,14 @@
 import React from "react";
 import "./PointsRow.scss";
 
-const PointsRow = ({ points, windPlayer, wind, pause }) => (
+interface PointsRowProps {
+    points: number[];
+    windPlayer: number;
+    wind: string;
+    pause?: number[] | null;
+}
+
+const PointsRow = ({ points, windPlayer, wind, pause }: PointsRowProps) => (
     <div className="points-row">
         { points?.map((point, i) => (
             <div key={i} className={pause?.includes(i) ? "paused" : ""}>
