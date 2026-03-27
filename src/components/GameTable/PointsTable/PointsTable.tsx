@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React, {Fragment} from "react";
 import "./PointsTable.scss";
 import PointsRow from "./PointsRow";
 import RoundRow from "./RoundRow";
 import TransactionRow from "./TransactionRow";
-import type Settings from "Types/Settings";
+import Settings, {PointsDistribution} from "Types/Settings";
 
 const winds: string[] = ["東", "南", "西", "北", "中", "鳳"];
 
@@ -25,7 +25,8 @@ const PointsTable = ({ points, mahjongs, pause, settings }: PointsTableProps) =>
 
     const calculateTransactions = (round: number) => {
         transactions = Array(settings.noPlayers).fill(0);
-        if (settings.pointsDistribution >= 2) {
+        if (settings.pointsDistribution === PointsDistribution.ALL_PAYS_ALL
+        || settings.pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG) {
             points[round].forEach((p, i) => {
                 points[round].forEach((p2, j) => {
                     if (!(pause && pause[round] && (pause[round].includes(i) || pause[round].includes(j))) && i != j) {
@@ -56,7 +57,8 @@ const PointsTable = ({ points, mahjongs, pause, settings }: PointsTableProps) =>
                 return (
                     <Fragment key={i}>
                         <RoundRow points={round} mahjong={mahjongs[i]} pause={pause?.[i] ?? null} />
-                        {settings.pointsDistribution >= 2 &&
+                        {(settings.pointsDistribution === PointsDistribution.ALL_PAYS_ALL
+                        || settings.pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG) &&
                             <TransactionRow points={transactions} pause={pause?.[i] ?? null} />
                         }
                         <PointsRow points={pointsSum} windPlayer={windPlayer} wind={winds[wind]} pause={pause?.[i] ?? null} />

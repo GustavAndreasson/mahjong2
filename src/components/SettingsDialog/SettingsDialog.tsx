@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SettingsDialog.scss";
 import ConfirmNewGame from "./ConfirmNewGame";
-import type Settings from "Types/Settings";
+import Settings, { PointsDistribution } from "Types/Settings";
 
 interface SettingsDialogProps {
     settings: Settings;
@@ -12,7 +12,7 @@ interface SettingsDialogProps {
 
 const SettingsDialog = ({ settings, updateSettings, closeSettings, newGame }: SettingsDialogProps) => {
     const [noPlayers, setNoPlayers] = useState<number>(settings.noPlayers);
-    const [pointsDistribution, setPointsDistribution] = useState<number>(settings.pointsDistribution);
+    const [pointsDistribution, setPointsDistribution] = useState<PointsDistribution>(settings.pointsDistribution);
     const [startPoints, setStartPoints] = useState<number>(settings.startPoints);
     const [showConfirm, setShowConfirm] = useState<boolean>(false);
 
@@ -50,22 +50,22 @@ const SettingsDialog = ({ settings, updateSettings, closeSettings, newGame }: Se
                     <span className="setting-label">Antal spelare</span>
                     <span className="setting-options">
                         <input type="radio" name="no-players" value="2" id="no-players-2"
-                            checked={noPlayers == 2}
+                            checked={noPlayers === 2}
                             onChange={e => setNoPlayers(Number.parseInt(e.target.value))}
                         />
                         <label htmlFor="no-players-2">Två</label>
                         <input type="radio" name="no-players" value="3" id="no-players-3"
-                            checked={noPlayers == 3}
+                            checked={noPlayers === 3}
                             onChange={e => setNoPlayers(Number.parseInt(e.target.value))}
                         />
                         <label htmlFor="no-players-3">Tre</label>
                         <input type="radio" name="no-players" value="4" id="no-players-4"
-                            checked={noPlayers == 4}
+                            checked={noPlayers === 4}
                             onChange={e => setNoPlayers(Number.parseInt(e.target.value))}
                         />
                         <label htmlFor="no-players-4">Fyra</label>
                         <input type="radio" name="no-players" value="5" id="no-players-5"
-                            checked={noPlayers == 5}
+                            checked={noPlayers === 5}
                             onChange={e => setNoPlayers(Number.parseInt(e.target.value))}
                         />
                         <label htmlFor="no-players-5">Fem</label>
@@ -74,26 +74,30 @@ const SettingsDialog = ({ settings, updateSettings, closeSettings, newGame }: Se
                 <div className="setting">
                     <span className="setting-label">Poängutdelning</span>
                     <span className="setting-options">
-                        <input type="radio" name="points-distribution" value="0" id="points-distribution-0"
-                            checked={pointsDistribution == 0}
+                        <input type="radio" name="points-distribution" id="points-distribution-agp"
+                            value={PointsDistribution.ALL_GET_POINTS}
+                            checked={pointsDistribution === PointsDistribution.ALL_GET_POINTS}
                             onChange={e => setPointsDistribution(Number.parseInt(e.target.value))}
                         />
-                        <label htmlFor="points-distribution-0">Alla får poäng</label><br />
-                        <input type="radio" name="points-distribution" value="1" id="points-distribution-1"
-                            checked={pointsDistribution == 1}
+                        <label htmlFor="points-distribution-agp">Alla får poäng</label><br />
+                        <input type="radio" name="points-distribution" id="points-distribution-mgp"
+                            value={PointsDistribution.MAHJONG_GET_POINTS}
+                            checked={pointsDistribution === PointsDistribution.MAHJONG_GET_POINTS}
                             onChange={e => setPointsDistribution(Number.parseInt(e.target.value))}
                         />
-                        <label htmlFor="points-distribution-1">Mahjong får poäng</label><br />
-                        <input type="radio" name="points-distribution" value="2" id="points-distribution-2"
-                            checked={pointsDistribution == 2}
+                        <label htmlFor="points-distribution-mgp">Mahjong får poäng</label><br />
+                        <input type="radio" name="points-distribution" id="points-distribution-apa"
+                            value={PointsDistribution.ALL_PAYS_ALL}
+                            checked={pointsDistribution === PointsDistribution.ALL_PAYS_ALL}
                             onChange={e => setPointsDistribution(Number.parseInt(e.target.value))}
                         />
-                        <label htmlFor="points-distribution-2">Alla betalar till alla</label><br />
-                        <input type="radio" name="points-distribution" value="3" id="points-distribution-3"
-                            checked={pointsDistribution == 3}
+                        <label htmlFor="points-distribution-apa">Alla betalar till alla</label><br />
+                        <input type="radio" name="points-distribution" id="points-distribution-apm"
+                            value={PointsDistribution.ALL_PAYS_MAHJONG}
+                            checked={pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG}
                             onChange={e => setPointsDistribution(Number.parseInt(e.target.value))}
                         />
-                        <label htmlFor="points-distribution-3">Alla betalar till Mahjong</label>
+                        <label htmlFor="points-distribution-apm">Alla betalar till Mahjong</label>
                     </span>
                 </div>
                 <div className="setting">

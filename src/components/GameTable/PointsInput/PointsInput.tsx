@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import "./PointsInput.scss";
-import type Settings from "Types/Settings";
+import Settings, {PointsDistribution} from "Types/Settings";
 
 interface PointsInputProps {
     settings: Settings;
@@ -15,14 +15,16 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }: PointsInputPro
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (mahjong >= 0 && (
-            ((settings.pointsDistribution === 2 || settings.pointsDistribution === 0)
-                && values.every((v: string, i: number) => /^\d+$/.test(v) || (pause?.includes(i))))
-            || ((settings.pointsDistribution === 3 || settings.pointsDistribution === 1)
+            ((settings.pointsDistribution === PointsDistribution.ALL_PAYS_ALL
+                    || settings.pointsDistribution === PointsDistribution.ALL_GET_POINTS)
+                && values.every((v, i) => /^\d+$/.test(v) || (pause?.includes(i))))
+            || ((settings.pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG
+                    || settings.pointsDistribution === PointsDistribution.MAHJONG_GET_POINTS)
                 &&/^\d+$/.test(values[mahjong]))
         )) {
-            update(values.map((v: string, i: number) =>
-                (settings.pointsDistribution === 2
-                || settings.pointsDistribution === 0
+            update(values.map((v, i) =>
+                (settings.pointsDistribution === PointsDistribution.ALL_PAYS_ALL
+                || settings.pointsDistribution === PointsDistribution.ALL_GET_POINTS
                 || i === mahjong)
                 && !(pause?.includes(i))
                 ? Number.parseInt(v) : 0
@@ -38,9 +40,11 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }: PointsInputPro
 
     useEffect(() => {
         setAllowSubmit(mahjong >= 0 && (
-            ((settings.pointsDistribution === 2 || settings.pointsDistribution === 0)
-                && values.every((v: string, i: number) => /^\d+$/.test(v) || (pause?.includes(i))))
-            || ((settings.pointsDistribution === 3 || settings.pointsDistribution === 1)
+            ((settings.pointsDistribution === PointsDistribution.ALL_PAYS_ALL
+                    || settings.pointsDistribution === PointsDistribution.ALL_GET_POINTS)
+                && values.every((v, i) => /^\d+$/.test(v) || (pause?.includes(i))))
+            || ((settings.pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG
+                    || settings.pointsDistribution === PointsDistribution.MAHJONG_GET_POINTS)
                 && /^\d+$/.test(values[mahjong]))
         ));
     }, [values, mahjong]);
@@ -64,7 +68,9 @@ const PointsInput = ({ settings, pause, update, setAllowSubmit }: PointsInputPro
                             onFocus={e => e.target.select()}
                             disabled={
                                 (pause?.includes(i))
-                                || ((settings.pointsDistribution === 1 || settings.pointsDistribution === 3) && mahjong !== i)
+                                || ((settings.pointsDistribution === PointsDistribution.MAHJONG_GET_POINTS
+                                    || settings.pointsDistribution === PointsDistribution.ALL_PAYS_MAHJONG)
+                                    && mahjong !== i)
                             }
                         />
                     </div>
