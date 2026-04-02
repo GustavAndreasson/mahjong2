@@ -23,6 +23,7 @@
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+    "noImplicitAny": true,
 
     // Style Options
     // "noImplicitReturns": true,
@@ -47,6 +48,7 @@
       "Components/*": ["src/components/*"],
       "Hooks/*": ["src/hooks/*"],
       "Types/*": ["src/types/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true
   }
 }

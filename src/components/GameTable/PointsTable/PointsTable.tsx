@@ -16,11 +16,11 @@ interface PointsTableProps {
 
 const PointsTable = ({ points, mahjongs, pause, settings }: PointsTableProps) => {
     let pointsSum: number[] = Array(settings.noPlayers).fill(settings.startPoints);
-    let windPlayer: number = 0;
+    let windPlayer = 0;
     while (pause && pause[0] && pause[0].includes(windPlayer) && windPlayer < settings.noPlayers * 2) {
         windPlayer += 1;
     }
-    let wind: number = 0;
+    let wind = 0;
     let transactions: number[] = [];
 
     const calculateTransactions = (round: number) => {

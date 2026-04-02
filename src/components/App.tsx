@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JSONCrush from "jsoncrush";
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalstorageState } from "rooks";
 import "./App.scss";
 import Header from "./Header";
 import SettingsDialog from "./SettingsDialog";
@@ -13,7 +13,7 @@ import Game from "Types/Game";
 import Settings from "Types/Settings";
 
 const App = () => {
-    const [game, setGame] = useLocalStorage<Game>("game", {
+    const [game, setGame] = useLocalstorageState<Game>("game", {
         names: ["Gösta", "Helge", "Folke", "Cecilia"],
         points: [],
         mahjongs: [],
@@ -46,7 +46,7 @@ const App = () => {
     }
 
     const updateSettings = (settings: Settings, restart: boolean): void => {
-        const noPlayersChange: number = settings.noPlayers - game.settings.noPlayers;
+        const noPlayersChange = settings.noPlayers - game.settings.noPlayers;
         setGame({
             ...game,
             names: noPlayersChange < 0
@@ -68,7 +68,7 @@ const App = () => {
 
     const updatePlayer = (name: string, paused: boolean): void => {
         let pause: number[][] | null = null;
-        const round: number = game.points.length;
+        const round = game.points.length;
         const currentPause: number[] = game.pause ? game.pause[round] : [];
 
         if (currentPause.includes(nameChangePlayer) && !paused) {
@@ -99,12 +99,13 @@ const App = () => {
     const [saveGamesOpen, showSaveGames] = useState<boolean>(false);
 
     const [allowSubmit, setAllowSubmit] = useState<boolean>(false);
+    const [shareLink, setShareLink] = useState<string>("");
 
     useEffect(() => {
         if (location.search?.includes("g=")) {
             try {
                 setGame(JSON.parse(JSONCrush.uncrush(decodeURIComponent(location.search.substring(location.search.indexOf("g=") + 2)))));
-            } catch(e: Error) {
+            } catch(e) {
                 console.error(`Could not load gamestate from query. ${e}`);
             }
         }
@@ -115,8 +116,9 @@ const App = () => {
     return (
         <>
             <Header
-                showShare={() => {
-                    showShare(!settingsOpen);
+                showShare={(link: string) => {
+                    showShare(!shareOpen);
+                    setShareLink(link);
                     showSettings(false);
                     showSaveGames(false);
                 }}
@@ -130,9 +132,10 @@ const App = () => {
                     showShare(false);
                     showSettings(false);
                 }}
+                game={game}
             />
             { shareOpen && <ShareDialog
-                gameData={JSONCrush.crush(JSON.stringify(game))}
+                shareLink={shareLink}
                 closeShare={() => showShare(false)}
             /> }
             { settingsOpen && <SettingsDialog
@@ -143,7 +146,7 @@ const App = () => {
             /> }
             { nameChangePlayer >= 0 && <NameChangeDialog
                 name={game.names[nameChangePlayer]}
-                paused={!!(game.pause?.[game.pause.length - 1].includes(nameChangePlayer))}
+                paused={!!(game.pause?.[game.pause!.length - 1].includes(nameChangePlayer))}
                 updatePlayer={updatePlayer}
                 cancel={() => setNameChangePlayer(-1)}
             /> }

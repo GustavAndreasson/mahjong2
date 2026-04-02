@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useLocalstorageState } from "rooks";
 import Game from "Types/Game";
 import "./SaveGamesDialog.scss";
 
@@ -14,13 +14,13 @@ interface Save extends Game {
 }
 
 const SaveGamesDialog = ({ game, open, close }: SaveGamesDialogProps) => {
-    const [saveList, setSaveList] = useLocalStorage<Save[]>("savelist", []);
-    const bestSave: number = saveList.reduce(
+    const [saveList, setSaveList] = useLocalstorageState<Save[]>("savelist", []);
+    const bestSave = saveList.reduce(
         (res, save, i) => game.names.join() === save.names.join() && save.date > res[1] ? [i, save.date] : res
         , [-1, "0"]
     )[0];
     const [currentSave, setCurrentSave] = useState<number>(bestSave);
-    const now: string = (new Date()).toISOString();
+    const now = (new Date()).toISOString();
 
     const handleSave = (): void => {
         setSaveList(currentSave === -1
