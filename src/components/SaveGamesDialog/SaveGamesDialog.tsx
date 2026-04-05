@@ -27,7 +27,7 @@ const SaveGamesDialog = ({ game, open, close }: SaveGamesDialogProps) => {
             ? [...saveList, {...game, date: now}]
             : saveList.map((save, i) => i === currentSave ? {...game, date: now} : save)
         )
-        close();
+        setTimeout(() => close(), 500);
     }
 
     const handleOpen = (e: React.SubmitEvent<HTMLFormElement>): void => {
