@@ -14,10 +14,10 @@ const Header = ({ showShare, showSettings, showSaveGames, game }: HeaderProps) =
     <>
         <div className="header">
             <h1>Mahjong poängtabell</h1>
-            <ShareButton showShare={showShare} game={game}></ShareButton>
+            <ShareButton showShare={showShare} game={game} />
             <WakeLockButton />
-            <button className="settings-button fas fa-cog" onClick={showSettings}></button>
-            <button className="save-button fas fa-save" onClick={showSaveGames}></button>
+            <button className="settings-button fas fa-cog" onClick={showSettings} />
+            <button className="save-button fas fa-save" onClick={showSaveGames} />
         </div>
         <div className="headerspacer" />
     </>

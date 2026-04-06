@@ -34,7 +34,7 @@ const ShareDialog = ({ shareLink, closeShare }: ShareDialogProps) => {
                     ref={refInput}
                     value={shareLink}
                 />
-                <button type="submit" className="fas fa-copy"></button>
+                <button type="submit" className="fas fa-copy" />
             </form>
             <button type="button" onClick={closeShare}>OK</button>
         </div>

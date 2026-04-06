@@ -25,13 +25,7 @@ const SettingsDialog = ({ settings, updateSettings, closeSettings, newGame }: Se
         }
     }
 
-    const startNewGame = (): void => {
-        if (newGame) {
-            saveSettings(true);
-        } else {
-            setShowConfirm(true);
-        }
-    }
+    const startNewGame = (): void => newGame ? saveSettings(true) : setShowConfirm(true);
 
     const saveSettings = (restart: boolean): void => {
         updateSettings({

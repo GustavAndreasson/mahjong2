@@ -5,13 +5,13 @@ const WakeLockButton = () => {
     const { isSupported, released, request, release } = useWakeLock();
     if (!isSupported) return false;
 
-    const handleLock = () => released === false ? release() : request();
+    const handleLock: () => Promise<void> = () => released === false ? release() : request();
 
     return (
         <button
-            className={"wake-lock-button fas " + (released === false ? "fa-lock" : "fa-unlock")}
+            className={`wake-lock-button fas ${released === false ? "fa-lock" : "fa-unlock"}`}
             onClick={handleLock}
-        ></button>
+        />
     );
 }
 
