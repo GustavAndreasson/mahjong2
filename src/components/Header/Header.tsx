@@ -1,6 +1,7 @@
 import React from "react";
 import "./Header.scss";
 import ShareButton from "./ShareButton";
+import WakeLockButton from "./WakeLockButton";
 import Game from "Types/Game";
 
 interface HeaderProps {
@@ -14,6 +15,7 @@ const Header = ({ showShare, showSettings, showSaveGames, game }: HeaderProps) =
         <div className="header">
             <h1>Mahjong poängtabell</h1>
             <ShareButton showShare={showShare} game={game}></ShareButton>
+            <WakeLockButton />
             <button className="settings-button fas fa-cog" onClick={showSettings}></button>
             <button className="save-button fas fa-save" onClick={showSaveGames}></button>
         </div>

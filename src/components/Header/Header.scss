@@ -22,6 +22,10 @@
         padding: 4px;
         font-size: 19px;
 
+        &.wake-lock-button {
+            display: none;
+        }
+
         @media (max-width : 460px) {
             position: absolute;
             left: 7px;
@@ -35,6 +39,11 @@
             &.save-button {
                 left: auto;
                 right: 7px;
+            }
+
+            &.wake-lock-button {
+                left: 41px;
+                display: inline-block;
             }
         }
     }
